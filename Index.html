@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cascada CSS Bounce In</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    /* ===== CONTENEDOR DE BOXES ===== */
+    .container {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== ESTILO BASE DEL BOX ===== */
+    .box {
+      width: 120px;
+      height: 80px;
+      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      
+      /* Aplicamos la animación con el overshoot de la curva cúbica */
+      animation: bounceInCurve 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    }
+
+    /* Hover effect */
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ===== DELAYS ESCALONADOS (CASCADA) ===== */
+    .box:nth-child(1) { animation-delay: 0s; }
+    .box:nth-child(2) { animation-delay: 0.1s; }
+    .box:nth-child(3) { animation-delay: 0.2s; }
+    .box:nth-child(4) { animation-delay: 0.3s; }
+    .box:nth-child(5) { animation-delay: 0.4s; }
+    .box:nth-child(6) { animation-delay: 0.5s; }
+
+    /* ===== VARIACIONES DE COLOR ===== */
+    .box:nth-child(1) { background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%); }
+    .box:nth-child(2) { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); }
+    .box:nth-child(3) { background: linear-gradient(135deg, #db2777 0%, #e91e63 100%); }
+    .box:nth-child(4) { background: linear-gradient(135deg, #ea580c 0%, #f97316 100%); }
+    .box:nth-child(5) { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    .box:nth-child(6) { background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); }
+
+    /* ===== KEYFRAMES DE ANIMACIÓN ===== */
+    @keyframes bounceInCurve {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* ===== SECCIÓN DE INFORMACIÓN ===== */
+    .info {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 600px;
+      color: white;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .info h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #fbbf24;
+    }
+
+    .info p {
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .info code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    /* ===== BOTÓN PARA REINICIAR ANIMACIÓN ===== */
+    .reset-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #fbbf24;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    }
+
+    .reset-btn:hover {
+      background: #fcd34d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+    }
+
+    .reset-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+        gap: 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .container {
+        gap: 12px;
+        padding: 20px;
+      }
+
+      .box {
+        width: 100px;
+        height: 70px;
+        font-size: 0.9rem;
+      }
+
+      .info {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Cascada CSS Bounce In</h1>
+  <p class="subtitle">Animación con efecto de resorte y delays escalonados</p>
+
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+  </div>
+
+  <div class="info">
+    <h2>✨ Cómo funciona</h2>
+    <p><strong>Cubic-Bezier Magic:</strong> La curva <code>cubic-bezier(0.175, 0.885, 0.32, 1.275)</code> crea un efecto de resorte natural.</p>
+    <p><strong>Overshoot:</strong> El valor 1.275 (> 1) hace que el elemento supere su tamaño final antes de estabilizarse.</p>
+    <p><strong>Cascada:</strong> Cada box tiene un <code>animation-delay</code> diferente (0s, 0.1s, 0.2s, etc.), creando un efecto en cascada.</p>
+    <p><strong>Scale + Opacity:</strong> El elemento comienza a 30% de tamaño y 0 opacidad, llegando a 100% y opacidad completa.</p>
+    <button class="reset-btn" onclick="resetAnimation()">🔄 Reiniciar Animación</button>
+  </div>
+
+  <script>
+    function resetAnimation() {
+      const boxes = document.querySelectorAll('.box');
+      
+      // Remover animación
+      boxes.forEach(box => {
+        box.style.animation = 'none';
+      });
+
+      // Trigger reflow para reiniciar la animación
+      void document.body.offsetHeight;
+
+      // Volver a aplicar la animación
+      boxes.forEach(box => {
+        box.style.animation = '';
+      });
+    }
+  </script>
+</body>
+  </html>
