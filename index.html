@@ -26,6 +26,7 @@
             background: linear-gradient(135deg, #111827, #1f2937);
             padding: 30px 20px;
             text-align: center;
+            
             border-bottom: 2px solid #3b82f6;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
@@ -311,6 +312,409 @@
                 btn.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
                 cambiarCulturaAleatoria();
                 intervalo = setInterval(cambiarCulturaAleatoria, 4500);
+            } else {
+                ejecutando = false;
+                btn.innerText = "PLAY 🌍";
+                btn.style.background = "linear-gradient(135deg, #2563eb, #1d4ed8)";
+                clearInterval(intervalo);
+            }
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cultural Universal & Baladas Románticas</title>
+    <style>
+        /* Copyright © 2026 Francisco Verduzco. All rights reserved. */
+        /* Licensed under the Apache License, Version 2.0 */
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #060913 url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Capa superior para dar un tono místico de niebla y cosmos sobre el fondo */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(11, 15, 25, 0.85) 0%, rgba(6, 9, 19, 0.95) 100%);
+            z-index: -1;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(31, 41, 55, 0.9));
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #eab308;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            color: #f3f4f6;
+            text-shadow: 0 2px 12px rgba(234, 179, 8, 0.5);
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-container {
+            display: block;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #fde047;
+            margin-bottom: 20px;
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .viewer-card {
+            background-color: rgba(17, 24, 37, 0.95);
+            border-radius: 16px;
+            border: 1px solid #374151;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            margin-bottom: 50px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Contenedor dinámico con imágenes de la Madre Naturaleza */
+        .canvas-display {
+            width: 100%;
+            height: 420px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #4b5563;
+            transition: all 0.6s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .canvas-text-wrap {
+            background: rgba(0, 0, 0, 0.65);
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .canvas-display h2 {
+            font-size: 2.3rem;
+            color: #fde047;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        .canvas-display p.region {
+            font-size: 1.2rem;
+            color: #60a5fa;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.5);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 22px rgba(37, 99, 235, 0.7);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .description-box {
+            background-color: #1f2937;
+            border-left: 5px solid #eab308;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .description-box h3 {
+            color: #eab308;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .description-box p {
+            color: #e5e7eb;
+            font-size: 1.1rem;
+        }
+
+        /* SECCIÓN DE MÚSICA ROMÁNTICA GRUPERA */
+        .romantic-container {
+            background-color: rgba(20, 15, 30, 0.95);
+            border-radius: 16px;
+            border: 1px solid #4c1d95;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            margin-bottom: 40px;
+        }
+
+        .romantic-grid {
+            display: table;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .romantic-row {
+            display: table-row;
+        }
+
+        .romantic-col {
+            display: table-cell;
+            width: 50%;
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        .music-player-box {
+            background: #111827;
+            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .music-player-box h4 {
+            color: #f472b6;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #4b5563;
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            background-color: #0b0f19;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #1f2937;
+            margin-top: 60px;
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        footer .legal {
+            margin-bottom: 12px;
+            color: #f3f4f6;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        footer .license-text {
+            font-size: 0.85rem;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <header>
+        <h1>Portal Cultural Universal</h1>
+        <p>"Unificando a la humanidad bajo un mismo corazón, honrando las raíces ancestrales, la música del alma y la conexión eterna con la Madre Tierra y la Madre Naturaleza."</p>
+    </header>
+
+    <div class="main-container">
+        
+        <h3 class="section-title">El Latido de la Tierra y el Cosmos</h3>
+        <div class="viewer-card">
+            <div class="canvas-display" id="visualCanvas" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80');">
+                <div class="canvas-text-wrap">
+                    <h2 id="danceTitle">Portal Abierto</h2>
+                    <p class="region" id="danceRegion">Presiona PLAY para iniciar el viaje cultural</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="btn-play" id="playBtn" onclick="togglePlay()">PLAY 🌍</button>
+            </div>
+
+            <div class="description-box">
+                <h3 id="infoEsencia">Esencia del Universo</h3>
+                <p id="infoSignificado">Haz clic en el botón de arriba para iniciar un recorrido interactivo automatizado que entrelaza hermosas panorámicas de la naturaleza con el significado místico de las danzas sagradas de la humanidad.</p>
+            </div>
+        </div>
+
+        <h3 class="section-title">El Rincón del Recuerdo: Baladas Románticas</h3>
+        <div class="romantic-container">
+            <p style="color: #e2e8f0; margin-bottom: 20px; font-size: 1.1rem;">
+                Porque la cultura también vive en la música que conmueve el corazón. Disfruta de la esencia romántica de los grandes grupos que marcaron época, integrados directamente a tu portal.
+            </p>
+            
+            <div class="romantic-grid">
+                <div class="romantic-row">
+                    <div class="romantic-col">
+                        <div class="music-player-box">
+                            <h4>Los Yonic's - Éxitos Inolvidables</h4>
+                            <div class="video-responsive">
+                                <iframe src="https://www.youtube.com/embed/uA4ta-W7cDk" title="Los Yonics Mix" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="romantic-col">
+                        <div class="music-player-box">
+                            <h4>Los Caminantes, Bukis y Más</h4>
+                            <div class="video-responsive">
+                                <iframe src="https://www.youtube.com/embed/iq7pERacXrE" title="Gruperas Romanticas Mix" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p class="legal">Copyright © 2026 Francisco Verduzco. All rights reserved.</p>
+        <p class="license-text">Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0</p>
+    </footer>
+
+    <script>
+        // Arreglo unificado con hermosas imágenes panorámicas reales de Unsplash de la Madre Naturaleza y el Cosmos
+        const danzas = [
+            {
+                titulo: "La Danza de los Kúrpites",
+                region: "Michoacán, México 🇲🇽",
+                esencia: "Resurgimiento místico, fe y fuerza colectiva.",
+                significado: "Traducción de 'los que se juntan'. Dedicada ancestralmente al Sol y la Luna. Con un zapateado vigoroso pegado al suelo, los danzantes crean una conexión directa con la Madre Tierra, demostrando que la vida siempre vuelve a florecer de las cenizas volcánicas.",
+                imagen: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=900&q=80" // Paisaje montañoso/telúrico
+            },
+            {
+                titulo: "La Danza de los Viejitos",
+                region: "Región Purépecha, Michoacán 🇲🇽",
+                esencia: "El alma, la alegría y la sabiduría ancestral.",
+                significado: "Un tributo sagrado y lleno de júbilo a los cuatro elementos esenciales del cosmos (Tierra, Agua, Aire y Fuego). Con máscaras sonrientes y un enérgico zapateado con bastones, honra la sabiduría acumulada de las generaciones.",
+                imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80" // Bosque místico con niebla
+            },
+            {
+                titulo: "El Hula Ancestral",
+                region: "Islas de Hawái 🇺🇸",
+                esencia: "Conexión elemental y el aliento de vida (Aloha).",
+                significado: "Las manos dibujan de forma poética el viento, las olas, los volcanes y los árboles. Cada movimiento es un canal del flujo vital de la Madre Naturaleza, recordando que la creación y el ser humano están entrelazados en una sola alma.",
+                imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" // Playa/Océano natural al amanecer
+            },
+            {
+                titulo: "El Bharatanatyam",
+                region: "Tamil Nadu, India 🇮🇳",
+                esencia: "Geometría cósmica y devoción celestial.",
+                significado: "Una de las danzas más antiguas del mundo. Las posturas corporales perfectas emulan constelaciones y el orden del universo, sirviendo como un puente viviente donde la misma energía que mueve las estrellas mueve al ser humano.",
+                imagen: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=900&q=80" // Cielo estrellado y cosmos
+            },
+            {
+                titulo: "La Haka Maorí",
+                region: "Aotearoa, Nueva Zelanda 🇳🇿",
+                esencia: "Fuerza, honor ancestral y unificación telúrica.",
+                significado: "Una danza profunda de desafío y comunión. A través de cantos profundos y golpes rítmicos en el pecho, los guerreros unifican su espíritu con la fuerza de la tierra bajo sus pies, honrando el legado inquebrantable de sus ancestros.",
+                imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" // Montañas majestuosas estilo Grand Teton
+            }
+        ];
+
+        let intervalo = null;
+        let ejecutando = false;
+        let ultimoIndice = -1;
+
+        function cambiarCulturaAleatoria() {
+            let nuevoIndice;
+            do {
+                nuevoIndice = Math.floor(Math.random() * danzas.length);
+            } while (nuevoIndice === ultimoIndice);
+            
+            ultimoIndice = nuevoIndice;
+            const data = danzas[nuevoIndice];
+
+            const canvas = document.getElementById("visualCanvas");
+            // Cambia la imagen de fondo dinámicamente con transiciones visuales suaves
+            canvas.style.backgroundImage = "url('" + data.imagen + "')";
+            
+            document.getElementById("danceTitle").innerText = data.titulo;
+            document.getElementById("danceRegion").innerText = data.region;
+            document.getElementById("infoEsencia").innerText = "Esencia: " + data.esencia;
+            document.getElementById("infoSignificado").innerText = data.significado;
+        }
+
+        function togglePlay() {
+            const btn = document.getElementById("playBtn");
+            if (!ejecutando) {
+                ejecutando = true;
+                btn.innerText = "PAUSE ⏸️";
+                btn.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+                cambiarCulturaAleatoria();
+                intervalo = setInterval(cambiarCulturaAleatoria, 5000); // Cambia cada 5 segundos
             } else {
                 ejecutando = false;
                 btn.innerText = "PLAY 🌍";
